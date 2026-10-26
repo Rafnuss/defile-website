@@ -1,0 +1,66 @@
+const archive = "https://www.nosoiseaux.ch/index.php?m_id=1309";
+
+export const paperGroups = [
+  {
+    id: "1996",
+    years: "1996",
+    articles: [
+      {
+        id: "Charvoz1996",
+        authors: "Charvoz, P., Matérac, J.-P. & Maire, M.",
+        bibAuthors: "Charvoz, Pierre and Matérac, Jean-Pierre and Maire, Michel",
+        year: 1996,
+        title: "La migration postnuptiale visible en 1993 au défilé de Fort l’Écluse (Haute-Savoie et Ain) près de Genève. I. Rapaces diurnes, Cigognes, Pigeons et Corvidés",
+        volume: "43",
+        pages: "261–288",
+        cover: "paper-1996-I",
+        url: archive,
+        archive: true,
+        issue: "443",
+      },
+      {
+        id: "Materac1996",
+        authors: "Matérac, J.-P., Charvoz, P. & Maire, M.",
+        bibAuthors: "Matérac, Jean-Pierre and Charvoz, Pierre and Maire, Michel",
+        year: 1996,
+        title: "La migration postnuptiale visible en 1993 au défilé du Fort l’Écluse (Haute-Savoie et Ain) près de Genève. II. Hérons, Palmipèdes, Limicoles et Passereaux",
+        volume: "43",
+        pages: "389–396",
+        cover: "paper-1996-II",
+        url: archive,
+        archive: true,
+        issue: "444",
+      },
+    ],
+  },
+  {
+    id: "2019",
+    years: "2019–2020",
+    articles: [
+      {
+        id: "BirotColomb2019",
+        authors: "Birot-Colomb, X., Giacomo, C., Maire, M. & Matérac, J.-P.",
+        bibAuthors: "Birot-Colomb, Xavier and Giacomo, Clément and Maire, Michel and Matérac, Jean-Pierre",
+        year: 2019,
+        title: "Évolution annuelle (1993–2017) de la migration postnuptiale des rapaces au défilé de l’Écluse (Haute-Savoie et Ain, France)",
+        volume: "66",
+        number: "2",
+        pages: "101–126",
+        cover: "paper-2019",
+        url: "https://auvergne-rhone-alpes.lpo.fr/wp-content/uploads/ArticleDE1993-2017NO536Birot-Colombetal2019.pdf",
+      },
+      {
+        id: "BirotColomb2020",
+        authors: "Birot-Colomb, X., Giacomo, C., Maire, M. & Matérac, J.-P.",
+        bibAuthors: "Birot-Colomb, Xavier and Giacomo, Clément and Maire, Michel and Matérac, Jean-Pierre",
+        year: 2020,
+        title: "Évolution annuelle (1993–2019) de la migration postnuptiale au défilé de l’Écluse (Haute-Savoie et Ain, France). II. Pigeons, Grue cendrée, Ciconiiformes, Grand Cormoran, Guêpier d’Europe, corvidés, alouettes et irruptions d’espèces forestières",
+        volume: "67",
+        number: "4",
+        pages: "221–245",
+        cover: "paper-2020",
+        url: "https://auvergne-rhone-alpes.lpo.fr/wp-content/uploads/ArticleDE1993-2019N542Birot-Colombetal2020.pdf",
+      },
+    ],
+  },
+];

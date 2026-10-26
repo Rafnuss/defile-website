@@ -21,6 +21,12 @@
           :aria-current="page === 'explore' ? 'page' : null"
           >{{ $t("nav.explore") }}</a
         >
+        <a
+          href="#publications"
+          :class="{ active: page === 'publications' }"
+          :aria-current="page === 'publications' ? 'page' : null"
+          >{{ $t("nav.publications") }}</a
+        >
       </nav>
       <div class="header-end">
         <a
@@ -49,6 +55,9 @@
   <main>
     <div v-if="page === 'explore'" class="container">
       <ExplorePage :route-taxon="exploreTaxon" @select="onExploreSelect" />
+    </div>
+    <div v-else-if="page === 'publications'" class="container">
+      <PublicationsPage />
     </div>
     <div v-else class="container">
       <!-- The day shown, its count on Trektellen and the display settings -->
@@ -356,6 +365,8 @@ import IntroSection from "./components/IntroSection.vue";
 import Footer from "./components/Footer.vue";
 // Explore is only needed on #explore: keep it (and KaTeX) out of the forecast page's first load
 const ExplorePage = defineAsyncComponent(() => import("./components/explore/ExplorePage.vue"));
+
+const PublicationsPage = defineAsyncComponent(() => import("./components/PublicationsPage.vue"));
 
 // Constants
 
@@ -756,6 +767,8 @@ watch(locale, (newLocale) => {
 @media (max-width: 575.98px) {
   .header-row {
     gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
   }
   .brand-sub,
   .icon-link-btn {
@@ -765,7 +778,12 @@ watch(locale, (newLocale) => {
     font-size: 0.95rem;
   }
   .page-tabs {
-    gap: 0.75rem;
+    order: 3;
+    width: 100%;
+    gap: 1.25rem;
+  }
+  .page-tabs a {
+    padding: 0.5rem 0;
   }
   .brand img {
     width: 34px;

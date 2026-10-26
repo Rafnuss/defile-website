@@ -2,9 +2,10 @@ import { ref, onMounted, onUnmounted } from "vue";
 
 /**
  * Page from the URL hash: "#explore" or "#explore/<ebird_code>" is the Explore page, anything else
- * (including species anchors) the forecast.
+ * (including species anchors) the forecast. "#publications" opens the publication library.
  */
 export function parseHash(hash) {
+  if (hash === "#publications") return { page: "publications", taxon: null };
   // eslint-disable-next-line security/detect-unsafe-regex -- linear: single optional group
   const m = hash.match(/^#explore(?:\/([^/]+))?$/);
   return m ? { page: "explore", taxon: m[1] ?? null } : { page: "forecast", taxon: null };

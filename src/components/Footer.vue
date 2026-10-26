@@ -28,6 +28,9 @@
         </ul>
         <h2 class="mt-4">{{ $t("footer.references") }}</h2>
         <ul>
+          <li>
+            <a href="#publications">{{ $t("nav.publications") }}</a>
+          </li>
           <li v-for="r in REFERENCES" :key="r.url" class="ref">
             <a :href="r.url" target="_blank" rel="noopener">{{ r.title }}</a>
             <span class="repo">{{ r.source }}</span>

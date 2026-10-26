@@ -29,3 +29,9 @@ The website is published at https://raphaelnussbaumer.com/defile/. On pushes to 
 `PERSONAL_SITE_DEPLOY_KEY` is a write-enabled SSH deploy key for `Rafnuss/rafnuss.github.io`, stored as an Actions secret in this repository. It lets the build publish to that repository without a personal access token. The `defile-site` branch must exist before the first deployment.
 
 The personal website serves redirects from `/defileViz/` and `/defileviz/`. This repository’s own Pages URL, `/defile-website/`, also redirects to `/defile/`. Redirects preserve query parameters and URL fragments, including language, species and tab selections. GitHub Pages serves these as HTML redirects, rather than HTTP 301 responses. Keep the old GitHub repository name unused so GitHub’s repository redirect continues to work.
+
+### Publications
+
+The `#publications` page shows two Nos Oiseaux cards (the two 1996 parts together, and the 2019–2020 syntheses together), followed by the future dataset section and all 21 available annual reports. Each article retains its full citation and link, maintained in `src/data/papers.js`. The data section distinguishes the data paper, the complete Zenodo deposit (DOI `10.5281/zenodo.23598005`) and the GBIF sampling-event representation, currently marked in preparation. A blank, unlinked card preserves the missing 2022 report in the annual sequence. Report links and first-page WebP thumbnails are generated from the sibling dataset repository's reference inventory; the 2015 report uses its recovered Migraction URL because the LPO archive links to 2016. The 1996 card links to the Nos Oiseaux archive (issues 443 and 444), since no public article PDF URL is recorded.
+
+To regenerate covers and `src/data/reports.json`, install Poppler and WebP, restore the reference PDFs in `defile-dataset`, and run `python3 scripts/build-publication-covers.py ../defile-dataset`. Original PDFs remain with their publishers; only first-page thumbnails are stored here.
