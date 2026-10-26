@@ -38,7 +38,7 @@
     <div v-for="row in enrichedspecies" :key="row.species" class="overview-row">
       <a :href="`#${row.species}`" class="species-link">
         <img
-          :src="`/defileViz/species_icon/${row.species.toLowerCase().replace(/\s+/g, '_')}.svg`"
+          :src="`${base}species_icon/${row.species.toLowerCase().replace(/\s+/g, '_')}.svg`"
           :alt="row.species + ' icon'"
           @error="$event.target.style.display = 'none'"
         />
@@ -78,6 +78,7 @@ import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { rangeBar } from "../utils/rangeBar.js";
 
+const base = import.meta.env.BASE_URL;
 const { t } = useI18n();
 
 const props = defineProps({

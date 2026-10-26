@@ -1,7 +1,8 @@
-# defileViz
+# defile-website
 
-Vue 3 + Vite site showing the Défilé de l'Ecluse raptor migration forecasts, deployed to GitHub
-Pages on push to main. Forecast NetCDF files and the Trektellen proxy are served by nginx on
+Vue 3 + Vite site showing the Défilé de l'Ecluse raptor migration forecasts, published at raphaelnussbaumer.com/defile/ through the personal website on push to main.
+The defile-site branch of Rafnuss/rafnuss.github.io stores the built site; its workflow calls
+the personal website deployment. This repository’s own Pages site redirects to /defile/. Forecast NetCDF files and the Trektellen proxy are served by nginx on
 defile.raphaelnussbaumer.com (config: /etc/nginx/sites-enabled/github-actions.conf on gce-rafnuss).
 
 After editing, run: `npm run format && npm run lint && npm test && npm run build` (CI runs the same).

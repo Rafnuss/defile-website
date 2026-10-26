@@ -36,10 +36,33 @@ jobs:
           npm run explore:fetch
           npm run build
 
+      - name: Checkout personal website publication branch
+        uses: actions/checkout@v7
+        with:
+          repository: Rafnuss/rafnuss.github.io
+          ref: defile-site
+          path: personal-site
+          ssh-key: ${{ secrets.PERSONAL_SITE_DEPLOY_KEY }}
+
+      - name: Publish the build to the personal website
+        run: |
+          rm -rf personal-site/site
+          cp -R dist personal-site/site
+          mkdir -p personal-site/.github/workflows
+          cp scripts/personal-site-deploy.yml personal-site/.github/workflows/deploy.yml
+          cd personal-site
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site .github/workflows/deploy.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Défilé website ($GITHUB_SHA)"
+            git push origin HEAD:defile-site
+          fi
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: dist
+          path: redirect
 
   deploy:
     needs: build

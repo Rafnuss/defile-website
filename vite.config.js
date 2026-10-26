@@ -28,7 +28,7 @@ function roundSpeciesStats() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [roundSpeciesStats(), vue()],
-  base: "/defileViz/",
+  base: "/defile/",
   server: {
     // The Trektellen proxy only accepts requests from the production origin (nginx whitelist),
     // so in dev, forward /trektellen through Vite and present that origin.

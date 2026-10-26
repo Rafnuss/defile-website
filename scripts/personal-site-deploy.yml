@@ -1,0 +1,15 @@
+name: Deploy personal website with Défilé
+
+on:
+  push:
+    branches: [defile-site]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    uses: Rafnuss/rafnuss.github.io/.github/workflows/deploy-pages.yml@main

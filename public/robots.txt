@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://raphaelnussbaumer.com/defileViz/sitemap.xml
+Sitemap: https://raphaelnussbaumer.com/defile/sitemap.xml
 
 # Crawl-delay for responsible crawling
 Crawl-delay: 1

@@ -88,7 +88,7 @@ const REPOS = [
   { label: "footer.datasetRepo", repo: "Rafnuss/defile-dataset" },
   { label: "footer.modelRepo", repo: "AmedeeRoy/defile-migration-forecast" },
   { label: "footer.exploreRepo", repo: "Rafnuss/defile-explore" },
-  { label: "footer.siteRepo", repo: "Rafnuss/defileViz" },
+  { label: "footer.siteRepo", repo: "Rafnuss/defile-website" },
 ];
 </script>
 

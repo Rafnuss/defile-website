@@ -162,7 +162,7 @@
           @click="sp.collapsed = !sp.collapsed"
         >
           <img
-            :src="`/defileViz/species_icon/${sp.species.toLowerCase().replace(/\s+/g, '_')}.svg`"
+            :src="`${base}species_icon/${sp.species.toLowerCase().replace(/\s+/g, '_')}.svg`"
             alt=""
             width="28"
             height="28"
@@ -358,6 +358,8 @@ import Footer from "./components/Footer.vue";
 const ExplorePage = defineAsyncComponent(() => import("./components/explore/ExplorePage.vue"));
 
 // Constants
+
+const base = import.meta.env.BASE_URL;
 const QUANTILE_LEVELS = species_doy_statistics[0]?.quantile_levels || [
   1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 99,
 ];
