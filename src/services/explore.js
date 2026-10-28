@@ -126,6 +126,7 @@ export const ELEMENT_CLAIMS = {
   "trend.passage_q": "season",
   "key_numbers.passage": "season",
   "season.share": "totals",
+  "season.phenology": "season",
   "season.passage": "totals",
   "season.chances": "totals",
 };

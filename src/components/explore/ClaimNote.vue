@@ -8,7 +8,13 @@
       ></i>
       <strong>{{ n.cls === "hide" ? $t("explore.hidden") : $t("explore.caveat") }}:</strong>
       {{ n.text }}
-      <a href="#" class="text-nowrap" @click.prevent="$emit('method')">
+      <a
+        :href="methodHref"
+        class="text-nowrap"
+        target="_blank"
+        rel="noopener"
+        :aria-label="$t('explore.method.link')"
+      >
         <i class="bi bi-info-circle"></i>
       </a>
     </div>
@@ -23,11 +29,11 @@ import { fate, reasonsOf } from "../../services/explore";
 const { t } = useI18n();
 
 const props = defineProps({
+  methodHref: { type: String, required: true },
   data: { type: Object, required: true },
   // fields of the species file the figure draws (reliability.elements keys)
   elements: { type: Array, required: true },
 });
-defineEmits(["method"]);
 
 const notes = computed(() =>
   ["hide", "caveat"]

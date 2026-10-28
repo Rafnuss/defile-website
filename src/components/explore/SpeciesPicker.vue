@@ -3,7 +3,7 @@
     <div class="picker-field" :class="{ open }">
       <i class="bi bi-search picker-icon"></i>
       <input
-        id="exploreTaxon"
+        :id="id"
         ref="input"
         v-model="query"
         type="text"
@@ -11,7 +11,7 @@
         role="combobox"
         autocomplete="off"
         :aria-expanded="open"
-        aria-controls="explorePickerList"
+        :aria-controls="`${id}-list`"
         :aria-label="$t('explore.picker.label')"
         :placeholder="selectedName"
         @focus="openList"
@@ -44,14 +44,14 @@
           </span>
           <div class="form-check form-switch small mb-0" :title="$t('explore.picker.groupsHelp')">
             <input
-              id="pickerGroups"
+              :id="`${id}-groups`"
               v-model="showGroups"
               class="form-check-input"
               type="checkbox"
               role="switch"
               @mousedown.prevent
             />
-            <label class="form-check-label" for="pickerGroups" @mousedown.prevent>
+            <label class="form-check-label" :for="`${id}-groups`" @mousedown.prevent>
               {{ $t("explore.picker.groups") }}
             </label>
           </div>
@@ -69,7 +69,7 @@
           </div>
         </div>
       </div>
-      <ul id="explorePickerList" ref="listEl" class="picker-list" role="listbox">
+      <ul :id="`${id}-list`" ref="listEl" class="picker-list" role="listbox">
         <li
           v-for="(tx, i) in list"
           :key="tx.taxon_id"
@@ -111,6 +111,7 @@ const { t, locale } = useI18n();
 
 const props = defineProps({
   // taxa.json entries with a page (the full tier)
+  id: { type: String, default: "exploreTaxon" },
   taxa: { type: Array, required: true },
   modelValue: { type: String, default: null },
 });

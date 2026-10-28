@@ -63,12 +63,12 @@
                       to: data.season.chances.years[1],
                     })
                   "
-                  @info="openMethod('shown', 'm-chances')"
+                  :method-href="methodUrl('reconstruction')"
                 />
                 <ClaimNote
                   :data="data"
                   :elements="['season.chances']"
-                  @method="openMethod('reliability', 'm-classes')"
+                  :method-href="methodUrl('reliability')"
                 />
                 <PlotChances :chances="data.season.chances" :passage="passageShown" />
               </div>
@@ -85,7 +85,7 @@
                       ? $t('explore.when.dayHelp', { ...mainSpan, date: dayDate, zone: dayZone })
                       : null
                   "
-                  @info="openMethod('coverage', 'm-profile')"
+                  :method-href="methodUrl('coverage', 'm-profile')"
                 />
                 <template v-if="data.daytime?.hours">
                   <PlotDaytime
@@ -111,12 +111,12 @@
               :title="$t('explore.many.figure')"
               :result="manyResult"
               :caption="$t('explore.many.help', { window: windowText })"
-              @info="openMethod('model', 'm-fill')"
+              :method-href="methodUrl('reconstruction')"
             />
             <ClaimNote
               :data="data"
               :elements="['trend.annual.total', 'trend.annual.smooth']"
-              @method="openMethod('reliability', 'm-classes')"
+              :method-href="methodUrl('reliability')"
             />
             <p v-if="!trend" class="small text-muted mb-1">{{ $t("explore.many.noTrend") }}</p>
             <PlotAnnual
@@ -173,14 +173,17 @@
               :title="$t('explore.timing.figure')"
               :result="timingShift"
               :caption="$t(seasonFilled ? 'explore.timing.helpFilled' : 'explore.timing.help')"
-              @info="openMethod('shown', 'm-dates')"
+              :method-href="methodUrl('phenology')"
             />
             <ClaimNote
               :data="data"
-              :elements="['season.share', 'season.passage', 'trend.passage_q']"
-              @method="openMethod('reliability', 'm-classes')"
+              :elements="['season.share', 'season.passage', 'season.phenology']"
+              :method-href="methodUrl('reliability')"
             />
-            <PlotPhenology :season="data.season" :smooth="smoothShown ? trend.passage_q : null" />
+            <PlotPhenology
+              :season="data.season"
+              :fit="phenologyShown ? data.season.phenology : null"
+            />
           </div>
         </div>
       </section>
@@ -196,7 +199,7 @@
                   :title="$t('explore.weather.effects')"
                   :result="weatherResult"
                   :caption="weatherEffects.length ? $t('explore.weather.effectsHelp') : null"
-                  @info="openMethod('shown', 'm-weather-read')"
+                  :method-href="methodUrl('model', 'm-weather')"
                 />
                 <PlotWeatherEffects v-if="weatherEffects.length" :effects="weatherEffects" />
                 <p v-if="weatherCaveat" class="small text-muted mb-1">
@@ -217,7 +220,7 @@
                       ? $t('explore.weather.windHelp', { speed: data.weather.wind.speed })
                       : null
                   "
-                  @info="openMethod('shown', 'm-weather-read')"
+                  :method-href="methodUrl('model', 'm-weather')"
                 />
                 <PlotWind v-if="windShown" :wind="data.weather.wind" />
                 <p v-else class="small text-muted mb-0">{{ $t("explore.weather.noWind") }}</p>
@@ -247,7 +250,6 @@
                         })
                       : b.help
                   "
-                  @info="openMethod('demography')"
                 />
                 <template v-if="b.block.display === 'pooled'">
                   <div class="share-bar mt-2" role="img" :aria-label="b.title">
@@ -312,20 +314,21 @@
         </div>
       </section>
 
-      <!-- How it's made -->
-      <section class="mb-4">
-        <h4 class="section-title">{{ $t("explore.method.title") }}</h4>
-        <MethodFlow @open="(k) => openMethod(k)" />
-      </section>
-
-      <Teleport to="body">
-        <MethodModal
-          ref="method"
-          :name="taxon ? taxonName(taxon, locale) : ''"
-          :data="data"
-          :effort="effort"
-        />
-      </Teleport>
+      <a
+        :href="exploreMethodUrl(taxonId)"
+        class="methods-card mb-4"
+        target="_blank"
+        rel="noopener"
+        aria-labelledby="methods-guide-title"
+      >
+        <i class="bi bi-journal-richtext methods-icon" aria-hidden="true"></i>
+        <div>
+          <h4 id="methods-guide-title">{{ $t("explore.method.guideTitle") }}</h4>
+          <p>{{ $t("explore.method.guideDescription") }}</p>
+          <span class="methods-cta">{{ $t("explore.method.guideAction") }} ↗</span>
+          <span class="methods-language">{{ $t("explore.method.guideLanguage") }}</span>
+        </div>
+      </a>
     </template>
   </div>
 </template>
@@ -336,10 +339,8 @@ import { useI18n } from "vue-i18n";
 import {
   fetchTaxa,
   fetchSpecies,
-  fetchEffort,
   doyLabel,
   doyDate,
-  taxonName,
   isGroup,
   LINKS,
   linksOf,
@@ -358,8 +359,7 @@ import PlotYearDays from "./PlotYearDays.vue";
 import PlotWeatherEffects from "./PlotWeatherEffects.vue";
 import PlotWind from "./PlotWind.vue";
 import ClaimNote from "./ClaimNote.vue";
-import MethodFlow from "./MethodFlow.vue";
-import MethodModal from "./methods/MethodModal.vue";
+import { exploreMethodUrl } from "../../services/methods.js";
 import SpeciesPicker from "./SpeciesPicker.vue";
 import TaxonMembers from "./TaxonMembers.vue";
 import FigureHead from "./FigureHead.vue";
@@ -378,10 +378,8 @@ const RECORDS = 10;
 const taxa = ref([]);
 const taxonId = ref(null);
 const data = ref(null);
-const effort = ref(null);
 const loadError = ref(null);
-const method = ref(null);
-const openMethod = (topic, section) => method.value?.open(topic, section);
+const methodUrl = (topic, section) => exploreMethodUrl(taxonId.value, topic, section);
 
 // Full-tier taxa: those counted on enough days for a page
 const options = computed(() => taxa.value.filter((tx) => tx.tier === "full"));
@@ -593,18 +591,20 @@ watch(data, (d) => {
   const written = yearAccounts.value.map((y) => y.year).filter((y) => years.includes(y));
   selectedYear.value = written.length ? Math.max(...written) : (years.at(-1) ?? null);
 });
-const smoothShown = computed(
-  () => trend.value?.passage_q && fate(data.value, "trend.passage_q") !== "hide",
+const phenologyShown = computed(
+  () =>
+    data.value?.season?.phenology?.quantiles?.q50 &&
+    fate(data.value, "season.phenology") !== "hide",
 );
 const timingShift = computed(() => {
-  if (!smoothShown.value) return null;
-  const q = trend.value.passage_q;
-  const d = Math.round(q.at(-1).q50 - q[0].q50);
-  if (Math.abs(d) < 2) return t("explore.timing.same", { year: q[0].year });
+  if (!phenologyShown.value) return null;
+  const q = data.value.season.phenology.quantiles.q50;
+  const d = Math.round(q.date.at(-1) - q.date[0]);
+  if (Math.abs(d) < 2) return t("explore.timing.same", { year: q.year[0] });
   return t("explore.timing.shift", {
     n: Math.abs(d),
     dir: d < 0 ? t("explore.timing.earlier") : t("explore.timing.later"),
-    year: q[0].year,
+    year: q.year[0],
   });
 });
 const demography = computed(() =>
@@ -632,7 +632,6 @@ const records = computed(() => data.value.records.top_days.slice(0, RECORDS));
 onMounted(async () => {
   try {
     taxa.value = await fetchTaxa();
-    effort.value = await fetchEffort();
   } catch (e) {
     loadError.value = String(e);
   }
@@ -668,6 +667,49 @@ watch(
 </script>
 
 <style scoped>
+.methods-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--dv-line);
+  border-left: 4px solid var(--dv-accent);
+  border-radius: var(--dv-radius);
+  background: var(--dv-accent-soft);
+  color: var(--dv-ink);
+  text-decoration: none;
+}
+.methods-card:hover {
+  border-color: var(--dv-accent);
+}
+.methods-card:focus-visible {
+  outline: 3px solid var(--dv-accent);
+  outline-offset: 3px;
+}
+.methods-icon {
+  color: var(--dv-accent);
+  font-size: 1.75rem;
+}
+.methods-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+.methods-card p {
+  max-width: 48rem;
+  color: var(--dv-muted);
+  margin-bottom: 0.75rem;
+}
+.methods-cta {
+  color: var(--dv-accent);
+  font-weight: 650;
+}
+.methods-language {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--dv-muted);
+  margin-top: 0.25rem;
+}
+
 .section-title {
   font-size: 1.15rem;
   font-weight: 600;

@@ -4,7 +4,7 @@
       <a class="brand" href="#">
         <img src="/defile_logo_72.webp" alt="" width="40" height="40" />
         <span class="brand-text">
-          <span class="brand-name">Défilé de l'Ecluse</span>
+          <span class="brand-name">Défilé de l’Écluse</span>
           <span class="brand-sub">{{ $t("nav.subtitle") }}</span>
         </span>
       </a>
@@ -363,7 +363,7 @@ import PlotWeather from "./components/PlotWeather.vue";
 import { taxonomicRank } from "./utils/taxonomy.js";
 import IntroSection from "./components/IntroSection.vue";
 import Footer from "./components/Footer.vue";
-// Explore is only needed on #explore: keep it (and KaTeX) out of the forecast page's first load
+// Explore is only needed on #explore: keep its charts out of the forecast page's first load
 const ExplorePage = defineAsyncComponent(() => import("./components/explore/ExplorePage.vue"));
 
 const PublicationsPage = defineAsyncComponent(() => import("./components/PublicationsPage.vue"));

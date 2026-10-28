@@ -36,3 +36,6 @@ Thumbs.db
 
 # Claude Code: share .claude/launch.json and settings.json, keep personal settings local
 .claude/settings.local.json
+
+# Local browser verification
+.playwright-cli/

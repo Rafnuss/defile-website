@@ -1,19 +1,21 @@
 <template>
-  <!-- A figure's head: a short title (grey), its main result (dark), the (i) to the method, and
+  <!-- A figure's head: a short title (grey), its main result (dark), the (i) link to the method, and
        underneath, smaller, how to read the figure -->
   <div class="fig-head">
     <h6 class="mb-0">
       <span class="fig-title">{{ title }}</span>
       <span v-if="result" class="fig-result">{{ result }}</span>
-      <button
-        type="button"
+      <a
+        v-if="methodHref"
+        :href="methodHref"
+        target="_blank"
+        rel="noopener"
         class="btn btn-link btn-sm p-0 ms-1 align-baseline info-btn"
         :title="$t('explore.method.link')"
         :aria-label="$t('explore.method.link')"
-        @click="$emit('info')"
       >
         <i class="bi bi-info-circle"></i>
-      </button>
+      </a>
     </h6>
     <p v-if="caption" class="fig-caption">{{ caption }}</p>
   </div>
@@ -21,11 +23,11 @@
 
 <script setup>
 defineProps({
+  methodHref: { type: String, default: null },
   title: { type: String, required: true },
   result: { type: String, default: null },
   caption: { type: String, default: null },
 });
-defineEmits(["info"]);
 </script>
 
 <style scoped>

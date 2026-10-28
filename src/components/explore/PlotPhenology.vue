@@ -21,13 +21,14 @@
           :fill-opacity="filled && v != null && row.count[j] == null ? PALE : 1"
         />
       </g>
-      <!-- smooth median (and 10/90%) passage dates -->
-      <template v-if="smoothPaths">
+      <!-- linear trends through annual 10/50/90% passage dates -->
+      <template v-if="trendPaths">
         <path
-          v-for="(d, k) in smoothPaths"
+          v-for="(d, k) in trendPaths"
           :key="'s' + k"
           :d="d"
           class="smooth"
+          :style="{ stroke: COLORS.plum }"
           :class="{ outer: k !== 1 }"
         />
       </template>
@@ -75,8 +76,8 @@
         ><span class="sw-dot"></span
         >{{ $t(filled ? "explore.timing.medianFilled" : "explore.timing.medianCounted") }}</span
       >
-      <span v-if="smoothPaths"
-        ><span class="sw-line"></span>{{ $t("explore.timing.medianSmooth") }}</span
+      <span v-if="trendPaths"
+        ><span class="sw-line"></span>{{ $t("explore.timing.medianLinear") }}</span
       >
       <span v-if="filled"><span class="sw-pale"></span>{{ $t("explore.timing.estimated") }}</span>
       <span><span class="sw-gap"></span>{{ $t("explore.timing.notCounted") }}</span>
@@ -97,9 +98,8 @@ const props = defineProps({
   //   passage: [{year, q10, q50, q90, q50_lo, q50_hi, counted}]}; source "gam": every day of the
   //   model window gap-filled by the trend (count null = not counted), "counts": share null there
   season: { type: Object, required: true },
-  // trend.passage_q: [{year, q10, q50, q90}], or null when not shown (a caveat hides it:
-  // defile-explore `reliability.NO_CAVEAT`)
-  smooth: { type: Array, default: null },
+  // Exported annual-date linear fits; no fit is calculated in the browser.
+  fit: { type: Object, default: null },
 });
 
 const W = 900;
@@ -166,17 +166,19 @@ const dots = computed(() =>
       opacity: filled.value ? 1 : 0.35 + 0.65 * (p.counted ?? 1),
     })),
 );
-const smoothPaths = computed(() => {
-  if (!props.smooth) return null;
-  return ["q10", "q50", "q90"].map((k) =>
-    props.smooth
+const trendPaths = computed(() => {
+  if (!props.fit?.quantiles?.q50) return null;
+  return ["q10", "q50", "q90"].map((key) => {
+    const q = props.fit.quantiles[key];
+    return q.year
+      .map((year, i) => ({ year, date: q.date[i] }))
       .filter((p) => p.year in rowIndex.value)
       .map(
         (p, i) =>
-          `${i ? "L" : "M"}${xOf(p[k]).toFixed(1)},${(yOf(rowIndex.value[p.year]) + RH / 2).toFixed(1)}`,
+          `${i ? "L" : "M"}${xOf(p.date).toFixed(1)},${(yOf(rowIndex.value[p.year]) + RH / 2).toFixed(1)}`,
       )
-      .join(""),
-  );
+      .join("");
+  });
 });
 const yearTicks = computed(() =>
   rows.value

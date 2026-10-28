@@ -1,5 +1,4 @@
-// Messages of the Explore page (merged into each locale in ./index.js). The method modals
-// (components/explore/methods/) are in English only for now; their titles are here.
+// Method explanations live in defile-explore; these labels link to its illustrated guide.
 export default {
   en: {
     nav: { forecast: "Forecast", explore: "Explore" },
@@ -121,6 +120,7 @@ export default {
         help: "One row per season. The colour shows the birds per day as a share of the season's total, so that changes in timing stand out.",
         medianCounted: "half passed (counted)",
         medianSmooth: "smooth trend",
+        medianLinear: "linear trend in annual passage dates",
         helpFilled:
           "One row per season. The colour shows the estimated birds per day as a share of the season's total, so that changes in timing stand out; the hours and days nobody counted are estimated by the trend model.",
         medianFilled: "half passed (80% interval)",
@@ -212,19 +212,11 @@ export default {
       },
       method: {
         link: "How is it made?",
-        title: "How it's made",
-        counts: "The counts",
-        countsSub: "sixty years, which days",
-        coverage: "Time of day and coverage",
-        coverageSub: "the share of a day counted",
-        model: "The trend model",
-        modelSub: "a GAM fills the gaps",
-        reliability: "How reliable?",
-        reliabilitySub: "tested on the counts",
-        shown: "What the page shows",
-        shownSub: "passage dates, chances, limits",
-        demography: "Age and sex",
-        demographySub: "shares of the birds classed",
+        guideTitle: "Illustrated methods guide",
+        guideDescription:
+          "From bird counts to migration trends: explore the data, the models and their uncertainty, with interactive examples for the selected species.",
+        guideAction: "Read the guide",
+        guideLanguage: "Guide in English · opens in a new tab",
       },
       caveat: "Read with care",
       hidden: "Not shown",
@@ -366,6 +358,7 @@ export default {
         help: "Une ligne par saison. La couleur indique les oiseaux par jour en part du total de la saison, pour faire ressortir les changements de calendrier.",
         medianCounted: "moitié passée (comptée)",
         medianSmooth: "tendance lissée",
+        medianLinear: "tendance linéaire des dates annuelles de passage",
         helpFilled:
           "Une ligne par saison. La couleur indique les oiseaux estimés par jour en part du total de la saison, pour faire ressortir les changements de calendrier ; les heures et jours non comptés sont estimés par le modèle de tendance.",
         medianFilled: "moitié passée (intervalle 80 %)",
@@ -457,19 +450,11 @@ export default {
       },
       method: {
         link: "Comment est-ce calculé ?",
-        title: "Comment c'est fait",
-        counts: "Les comptages",
-        countsSub: "soixante ans, quels jours",
-        coverage: "Heure du passage et couverture",
-        coverageSub: "la part du jour comptée",
-        model: "Le modèle de tendance",
-        modelSub: "un GAM comble les lacunes",
-        reliability: "Quelle fiabilité ?",
-        reliabilitySub: "testé sur les comptages",
-        shown: "Ce que montre la page",
-        shownSub: "dates de passage, chances, limites",
-        demography: "Âge et sexe",
-        demographySub: "parts des oiseaux classés",
+        guideTitle: "Comprendre les analyses",
+        guideDescription:
+          "Des comptages aux tendances migratoires : découvrez les données, les modèles et leurs incertitudes, avec des exemples interactifs pour l’espèce sélectionnée.",
+        guideAction: "Consulter le guide",
+        guideLanguage: "Guide en anglais · s’ouvre dans un nouvel onglet",
       },
       caveat: "À lire avec prudence",
       hidden: "Non affiché",
@@ -611,6 +596,7 @@ export default {
         help: "Eine Zeile pro Saison. Die Farbe zeigt die Vögel pro Tag als Anteil an der Saisonsumme, damit Verschiebungen im Zeitpunkt sichtbar werden.",
         medianCounted: "Hälfte durch (gezählt)",
         medianSmooth: "geglätteter Trend",
+        medianLinear: "linearer Trend der jährlichen Durchzugsdaten",
         helpFilled:
           "Eine Zeile pro Saison. Die Farbe zeigt die geschätzten Vögel pro Tag als Anteil an der Saisonsumme, damit Verschiebungen im Zeitpunkt sichtbar werden; nicht gezählte Stunden und Tage schätzt das Trendmodell.",
         medianFilled: "Hälfte durchgezogen (80%-Intervall)",
@@ -702,19 +688,11 @@ export default {
       },
       method: {
         link: "Wie wird das berechnet?",
-        title: "Wie es gemacht wird",
-        counts: "Die Zählungen",
-        countsSub: "sechzig Jahre, welche Tage",
-        coverage: "Tageszeit und Abdeckung",
-        coverageSub: "der gezählte Anteil des Tages",
-        model: "Das Trendmodell",
-        modelSub: "ein GAM füllt die Lücken",
-        reliability: "Wie verlässlich?",
-        reliabilitySub: "an den Zählungen getestet",
-        shown: "Was die Seite zeigt",
-        shownSub: "Durchzugsdaten, Chancen, Grenzen",
-        demography: "Alter und Geschlecht",
-        demographySub: "Anteile der bestimmten Vögel",
+        guideTitle: "Die Analysen verstehen",
+        guideDescription:
+          "Von Vogelzählungen zu Zugtrends: Daten, Modelle und ihre Unsicherheit mit interaktiven Beispielen für die ausgewählte Art erkunden.",
+        guideAction: "Zum Leitfaden",
+        guideLanguage: "Leitfaden auf Englisch · öffnet einen neuen Tab",
       },
       caveat: "Mit Vorsicht lesen",
       hidden: "Nicht gezeigt",
