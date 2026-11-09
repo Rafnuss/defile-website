@@ -1,5 +1,5 @@
 <template>
-  <!-- An authored text (defile-explore content/accounts): a quote-like block with a short bold
+  <!-- An authored text (defile-passage content/accounts): a quote-like block with a short bold
        lead-in, and a mark saying how it was written, explained on hover or focus -->
   <blockquote class="authored">
     <p class="mb-0">

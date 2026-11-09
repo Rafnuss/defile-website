@@ -91,7 +91,7 @@ const byId = computed(() => new Map(props.taxa.map((tx) => [tx.taxon_id, tx])));
 const group = computed(() => isGroup(props.taxon));
 const order = (a, b) => (a.taxon_order ?? Infinity) - (b.taxon_order ?? Infinity);
 
-// What the taxon adds up (defile-explore `add_rollups`): a group's species and smaller groups, a
+// What the taxon adds up (defile-passage `add_rollups`): a group's species and smaller groups, a
 // species's subspecies, in taxonomic order and without the taxon itself
 const parts = computed(() =>
   (props.taxon.members ?? [])

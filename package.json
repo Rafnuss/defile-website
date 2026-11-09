@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "explore:fetch": "node scripts/fetch-explore.mjs",
-    "explore:local": "node scripts/fetch-explore.mjs --from ../defile-explore/data/explore",
+    "explore:local": "node scripts/fetch-explore.mjs --from ../defile-passage/data/explore",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",

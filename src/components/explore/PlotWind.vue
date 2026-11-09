@@ -46,10 +46,10 @@ import { COLORS, alpha } from "../../theme.js";
 const { t, locale } = useI18n();
 
 const props = defineProps({
-  // weather.wind (defile-explore `weather.weather_block`): `rose`, one entry per side (`from`,
+  // weather.wind (defile-passage `weather.weather_block`): `rose`, one entry per side (`from`,
   // `effect`, `class`, counted `days` and their `relative` birds), `speed`, `origin`
   wind: { type: Object, required: true },
-  // sides with fewer counted days have no dot (defile-explore `reliability.WEATHER_MIN_DAYS`)
+  // sides with fewer counted days have no dot (defile-passage `reliability.WEATHER_MIN_DAYS`)
   minDays: { type: Number, default: 20 },
 });
 

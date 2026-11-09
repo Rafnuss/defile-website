@@ -9,7 +9,7 @@ describe("links to the Explore documentation", () => {
   });
   it("keeps the selected taxon when opening a chapter", () => {
     const url = new URL(exploreMethodUrl("avibase-451D6FC8", "phenology"));
-    expect(url.pathname).toBe("/defile-explore/");
+    expect(url.pathname).toBe("/defile-passage/");
     expect(url.searchParams.get("species")).toBe("avibase-451D6FC8");
     expect(url.hash).toBe("#phenology");
   });

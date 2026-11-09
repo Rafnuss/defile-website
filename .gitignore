@@ -4,7 +4,7 @@ node_modules/
 # Build output
 dist/
 
-# The Explore export, fetched from defile-explore (npm run explore:fetch / explore:local)
+# The Explore export, fetched from defile-passage (npm run explore:fetch / explore:local)
 public/data/explore/
 
 # Logs

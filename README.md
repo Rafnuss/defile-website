@@ -24,7 +24,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Explore methods
 
-The illustrated technical guide lives in [defile-explore](https://raphaelnussbaumer.com/defile-explore/), alongside its QA viewer. Figure information links open the relevant chapter or section with the current species selected; there are no method modals in this app. A single illustrated-guide card replaces the old “How it’s made” flowchart and opens the guide with the selected species. Its title, description and English-language notice are translated in `src/i18n/explore.js`. The URL helper is `src/services/methods.js`. To test against a local documentation preview, set `VITE_EXPLORE_METHODS_URL=http://127.0.0.1:4174/` when starting Vite.
+The illustrated technical guide lives in [defile-passage](https://raphaelnussbaumer.com/defile-passage/), alongside its QA viewer. Figure information links open the relevant chapter or section with the current species selected; there are no method modals in this app. A single illustrated-guide card replaces the old “How it’s made” flowchart and opens the guide with the selected species. Its title, description and English-language notice are translated in `src/i18n/explore.js`. The URL helper is `src/services/methods.js`. To test against a local documentation preview, set `VITE_EXPLORE_METHODS_URL=http://127.0.0.1:4174/` when starting Vite.
 
 ## Deployment
 

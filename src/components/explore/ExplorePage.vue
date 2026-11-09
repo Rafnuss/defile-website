@@ -392,7 +392,7 @@ const links = computed(() => {
 });
 const group = computed(() => taxon.value && isGroup(taxon.value));
 const trend = computed(() => data.value?.trend ?? null);
-// The weather block (defile-explore `weather.weather_block`): its effects and wind classed there
+// The weather block (defile-passage `weather.weather_block`): its effects and wind classed there
 const weather = computed(() => data.value?.weather ?? null);
 const weatherEffects = computed(
   () => weather.value?.effects.filter((e) => e.class !== "hide") ?? [],
@@ -420,7 +420,7 @@ const windResult = computed(() => {
   const side = rose[Math.round(weather.value.wind.origin / 45) % 8].from;
   return t("explore.weather.windBest", { side: t(`explore.weather.sides.${side}`) });
 });
-// The season block from the trend's gap-filled days (defile-explore `season.source`), else counts
+// The season block from the trend's gap-filled days (defile-passage `season.source`), else counts
 const seasonFilled = computed(() => data.value?.season?.source === "gam");
 const startYear = computed(() => data.value.settings.start_year.value);
 const firstYear = computed(() => taxon.value?.first_year ?? startYear.value);

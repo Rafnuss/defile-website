@@ -90,7 +90,7 @@ const REFERENCES = [
 const REPOS = [
   { label: "footer.datasetRepo", repo: "Rafnuss/defile-dataset" },
   { label: "footer.modelRepo", repo: "AmedeeRoy/defile-migration-forecast" },
-  { label: "footer.exploreRepo", repo: "Rafnuss/defile-explore" },
+  { label: "footer.exploreRepo", repo: "Rafnuss/defile-passage" },
   { label: "footer.siteRepo", repo: "Rafnuss/defile-website" },
 ];
 </script>

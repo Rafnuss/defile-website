@@ -11,7 +11,7 @@ import { COLORS, alpha } from "../../theme.js";
 const { t, locale } = useI18n();
 
 const props = defineProps({
-  // weather.effects with class "show" or "caveat" (defile-explore `weather.weather_block`): each
+  // weather.effects with class "show" or "caveat" (defile-passage `weather.weather_block`): each
   // term's effect on the day's expected passage for its contrast, with its 95% interval, and
   // `counted`, the counted days on the contrast's side against the opposite side (partial residual)
   effects: { type: Array, required: true },

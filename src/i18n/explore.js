@@ -1,4 +1,4 @@
-// Method explanations live in defile-explore; these labels link to its illustrated guide.
+// Method explanations live in defile-passage; these labels link to its illustrated guide.
 export default {
   en: {
     nav: { forecast: "Forecast", explore: "Explore" },

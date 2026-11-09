@@ -1,5 +1,5 @@
 <template>
-  <!-- What defile-explore's reliability classes say about the fields a figure draws -->
+  <!-- What defile-passage's reliability classes say about the fields a figure draws -->
   <div v-if="notes.length" class="claim small">
     <div v-for="n in notes" :key="n.cls" :class="`claim-${n.cls}`">
       <i

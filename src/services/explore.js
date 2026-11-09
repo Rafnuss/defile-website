@@ -1,4 +1,4 @@
-// The Explore export (defile-explore `scripts/build_explore.py`), served from
+// The Explore export (defile-passage `scripts/build_explore.py`), served from
 // public/data/explore/ (npm run explore:fetch or explore:local, not in git). Files are fetched
 // once and cached for the session.
 const BASE = `${import.meta.env.BASE_URL}data/explore/`;
@@ -33,7 +33,7 @@ export function doyLabel(doy, locale) {
 export const taxonName = (taxon, locale) =>
   (locale === "fr" && taxon.french_name) || taxon.english_name;
 
-// External pages of the taxon (defile-explore `settings.LINK_TEMPLATES`), with an icon each
+// External pages of the taxon (defile-passage `settings.LINK_TEMPLATES`), with an icon each
 export const LINKS = {
   ebird: { label: "eBird", icon: "bi-binoculars" },
   ebird_status: { label: "eBird abundance map", icon: "bi-map" },
@@ -55,10 +55,10 @@ export function linksOf(taxon) {
 
 // --- solar time -------------------------------------------------------------------------------
 // The export gives hours of the day in local apparent solar time (hour 12 starts at the sun's
-// transit over the Défilé, defile-explore `export.solar_shift`). The page shows clock time: the
+// transit over the Défilé, defile-passage `export.solar_shift`). The page shows clock time: the
 // solar hour plus the day's shift, as there.
 
-const SITE_LON = 5.914877; // defile-explore release.SITE
+const SITE_LON = 5.914877; // defile-passage release.SITE
 
 /** Offset of Europe/Paris from UTC (hours) at local noon on a date. */
 function zoneOffset(date) {
@@ -74,7 +74,7 @@ function zoneOffset(date) {
 
 /**
  * Hours from solar time to clock time at the Défilé on a date (clock = solar + shift): the zone's
- * offset, less the longitude's and the equation of time (NOAA's series), as defile-explore
+ * offset, less the longitude's and the equation of time (NOAA's series), as defile-passage
  * `export.solar_shift`.
  */
 export function solarShift(date) {
@@ -101,7 +101,7 @@ export function clock(h, step = 1) {
 }
 
 // --- reliability --------------------------------------------------------------------------------
-// defile-explore classes each claim of the trend (`reliability`: show, caveat or hide) and gives
+// defile-passage classes each claim of the trend (`reliability`: show, caveat or hide) and gives
 // each drawn field its class in `reliability.elements`. The page only looks fields up here.
 
 /** The class of a drawn field ("show" when the taxon has no reliability block). */
@@ -115,7 +115,7 @@ export function reasonsOf(data, element, claimOf = ELEMENT_CLAIMS) {
   return [...claim.reasons].sort((a, b) => rank[a.level] - rank[b.level]).map((r) => r.code);
 }
 
-// defile-explore reliability.ELEMENTS: the claim each field rests on
+// defile-passage reliability.ELEMENTS: the claim each field rests on
 export const ELEMENT_CLAIMS = {
   "trend.annual.total": "totals",
   "trend.days.total": "totals",
