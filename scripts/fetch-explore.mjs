@@ -2,7 +2,7 @@
 // from a defile-passage release (deploy.yml), or copied from a local build to try it before it
 // is published.
 //   node scripts/fetch-explore.mjs                                       # release EXPLORE_RELEASE
-//   node scripts/fetch-explore.mjs --from ../defile-passage/data/explore # a local build
+//   node scripts/fetch-explore.mjs --from ../defile-passage/output/explore # a local build
 import { execFileSync } from "node:child_process";
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";

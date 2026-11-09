@@ -233,6 +233,9 @@ export default {
         beyond_counting: "much of its passage falls outside the counting season",
         tails_band: "the start and end of its passage are uncertain",
         few_birds: "too few birds a season to follow its timing",
+        effort_varies:
+          "counting effort for this group grew over the years, so its change is not comparable",
+        group_taxon: "a group of species: its numbers follow how many birds were identified",
       },
     },
   },
@@ -471,6 +474,9 @@ export default {
         beyond_counting: "une bonne part de son passage tombe hors de la saison de comptage",
         tails_band: "le début et la fin de son passage sont incertains",
         few_birds: "trop peu d'oiseaux par saison pour suivre ses dates",
+        effort_varies:
+          "l'effort de comptage de ce groupe a augmenté au fil des ans, son évolution n'est donc pas comparable",
+        group_taxon: "un groupe d'espèces : ses effectifs dépendent du nombre d'oiseaux identifiés",
       },
     },
   },
@@ -709,6 +715,10 @@ export default {
         beyond_counting: "ein guter Teil des Durchzugs fällt ausserhalb der Zählsaison",
         tails_band: "Beginn und Ende des Durchzugs sind unsicher",
         few_birds: "zu wenige Vögel pro Saison, um die Zugzeit zu verfolgen",
+        effort_varies:
+          "der Zählaufwand für diese Gruppe ist über die Jahre gestiegen, ihre Entwicklung ist daher nicht vergleichbar",
+        group_taxon:
+          "eine Artengruppe: ihre Zahlen hängen davon ab, wie viele Vögel bestimmt wurden",
       },
     },
   },

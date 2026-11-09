@@ -20,5 +20,5 @@ After editing, run: `npm run format && npm run lint && npm test && npm run build
 - The Explore page (`#explore`, `src/components/explore/`) reads `public/data/explore/`, not in
   git: `npm run explore:fetch` downloads it from the defile-passage release named in
   `scripts/fetch-explore.mjs` (as deploy.yml does), `npm run explore:local` copies a local build
-  of `../defile-passage/data/explore` to try it first (`python scripts/build_explore.py` there
+  of `../defile-passage/output/explore` to try it first (`python scripts/build_explore.py` there
   documents each file). Don't edit it here; rebuild there, publish there, and deploy.

@@ -13,7 +13,7 @@ import { COLORS, alpha } from "../../theme.js";
 const { t, locale } = useI18n();
 
 const props = defineProps({
-  // trend.days, columnar: {date, c, count, total, q10, q90}, every day of the model window
+  // trend.days, columnar: {date, c, count, total, q2.5, q97.5}, every day of the model window
   days: { type: Object, required: true },
   year: { type: Number, required: true },
   // reliability class of the filled days (trend.days.total): show, caveat or hide
@@ -29,12 +29,14 @@ const PALE = 0.4; // a day nobody counted
 const isCounted = (d) => d.c > 0 || d.count > 0;
 
 const rows = computed(() => {
-  const { date, c, count, total, q10, q90 } = props.days;
+  const { date, c, count, total } = props.days;
+  const lo = props.days["q2.5"];
+  const hi = props.days["q97.5"];
   const y = String(props.year);
   const out = [];
   date.forEach((d, i) => {
     if (d.startsWith(y))
-      out.push({ date: d, c: c[i], count: count[i], total: total[i], q10: q10[i], q90: q90[i] });
+      out.push({ date: d, c: c[i], count: count[i], total: total[i], lo: lo[i], hi: hi[i] });
   });
   return out;
 });
@@ -79,23 +81,23 @@ function draw() {
         error_y: {
           type: "data",
           symmetric: false,
-          // the mean lies above q90 on days where a flock is rare but large: no bar above it
-          array: d.map((row) => Math.max(row.q90 - row.total, 0)),
-          arrayminus: d.map((row) => Math.max(row.total - row.q10, 0)),
+          // the mean lies above the upper end on days where a flock is rare but large: no bar above it
+          array: d.map((row) => Math.max(row.hi - row.total, 0)),
+          arrayminus: d.map((row) => Math.max(row.total - row.lo, 0)),
           color,
           thickness: 1.5,
           width: 0,
         },
         opacity: alpha,
         name,
-        customdata: d.map((row) => [day(row.date), row.q10, row.q90]),
+        customdata: d.map((row) => [day(row.date), row.lo, row.hi]),
         hovertemplate:
           `%{customdata[0]}: %{y:,.0f} ${birds} (%{customdata[1]:,.0f}–%{customdata[2]:,.0f})` +
           `<extra>${name}</extra>`,
       };
     };
     traces.push(
-      part(true, `${t("explore.many.dayTotal")}, ${t("explore.many.interval80")}`, 1),
+      part(true, `${t("explore.many.dayTotal")}, ${t("explore.many.interval95")}`, 1),
       part(false, t("explore.timing.estimated"), PALE),
     );
   }
