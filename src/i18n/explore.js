@@ -33,7 +33,7 @@ export default {
         },
         sort: { taxonomic: "Taxonomic", common: "Most abundant" },
         story: {
-          full: "counts and reliable model",
+          full: "counts and model",
           caveat: "model, read with care",
           counts: "counts only",
         },
@@ -272,7 +272,7 @@ export default {
         },
         sort: { taxonomic: "Systématique", common: "Les plus abondantes" },
         story: {
-          full: "comptages et modèle fiable",
+          full: "comptages et modèle",
           caveat: "modèle à lire avec prudence",
           counts: "comptages seuls",
         },
@@ -513,7 +513,7 @@ export default {
         },
         sort: { taxonomic: "Systematisch", common: "Am zahlreichsten" },
         story: {
-          full: "Zählungen und zuverlässiges Modell",
+          full: "Zählungen und Modell",
           caveat: "Modell mit Vorsicht lesen",
           counts: "nur Zählungen",
         },
